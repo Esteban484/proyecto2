@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+    
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+ <body>
+  <nav class="navbar bg-dark navbar-expand-lg " data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">ACSO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Red Neuronal</a>
+          <a class="nav-link active" href="#">SVM-HOG</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    
+      <div class="row">
+        
+          <div class="col-lg-6">
+            <div class="card text-center">
+              <div class="card-header">
+                Detección de uso de mascarilla
+              </div>
+              <div class="card-body">
+                <form method="post" action="{{ url_for('tasks2') }}">
+                  <div class="container-fluid">
+                    <input type="submit" class="btn btn-outline-success" value="Apagado/Encendido" name="stop" />
+                    <input type="submit" class="btn btn-outline-primary" value="Capturar foto" name="click2"/>
+                    <!--<input type="submit" value="Face Only" name="face" /> -->
+                    <input type="submit" class="btn btn-outline-danger"value="Grabacion" name="rec" />
+                  </div>
+                  <p> </p>
+                  <img src="{{ url_for('video_feed') }}" width="500" height="400">  
+
+                </form>
+              </div>
+             
+            </div>        
+          </div>
+          <div class="col-lg-6">
+            <div class="card text-center">
+              <div class="card-header">
+                Visualización de imagen
+              </div>
+              <div class="card-body">
+                <img src = "/static/shots/img_2.jpg" class= "card-img-top" width="400" height="400">
+              </div>
+              <form action= "/results" method="POST">
+                <h3>Resultado de la predicción</h3>
+                
+                  {% if pred2==1 %} 
+                    <textarea readonly class="form-control text-center bg-danger text-bg-danger" name="abc" rows="1" id="output">No tiene mascarilla
+                    </textarea>
+                  {% endif %}
+                  {% if pred2==0 %}
+                    <textarea readonly class="form-control text-center bg-success text-bg-success" name="abc" rows="1" id="output">Tiene mascarilla
+                    </textarea>
+                  {% endif %}  
+                
+              </form>
+              
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

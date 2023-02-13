@@ -7,16 +7,14 @@
  <body>
   <nav class="navbar bg-dark navbar-expand-lg " data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">ACSO</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link active" aria-current="page" href="#">Red Neuronal</a>
+          <a class= "nav-link" href="{{ url_for('rdn') }}"> SVM-HOG</a></button>
         </div>
       </div>
     </div>
@@ -57,11 +55,11 @@
               <form action= "/request" method="POST">
                 <h3>Resultado de la predicción</h3>
                 
-                  {% if pred==0.0 %} 
+                  {% if pred==1 %} 
                     <textarea readonly class="form-control text-center bg-danger text-bg-danger" name="abc" rows="1" id="output">No tiene mascarilla
                     </textarea>
                   {% endif %}
-                  {% if pred==1.0 %}
+                  {% if pred==0 %}
                     <textarea readonly class="form-control text-center bg-success text-bg-success" name="abc" rows="1" id="output">Tiene mascarilla
                     </textarea>
                   {% endif %}  
@@ -69,23 +67,7 @@
               </form>
               
               </textarea>
-              <form action= "/results" method="POST">
-                <h3>Caracteristicas:</h3>
-               
-                <textarea readonly class="form-control" rows="3" name="abc" id="output">
-                  Momentos de HU:
-                  {{hu}}
-           
-                  Momentos de HOG:
-                  {{hog}}
-
-                </textarea>
-
               
-
-      
-                <input type="submit" class="btn btn-outline-dark" value="Más Información" name="inf"/>
-              </form>
           </div>
       </div>
     </div>
